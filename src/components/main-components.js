@@ -14,7 +14,7 @@ const Header = (props) => {
         <label htmlFor="location">Location</label>
         <input id="location" onChange={props.onChangeLocation}></input>
         <label htmlFor="full-time">Full-time</label>
-        <input id="full-time" type="checkbox"></input>
+        <input id="full-time" type="checkbox" onChange={props.onChangeFullTime}></input>
         <button type="submit">Search</button>
       </form>
     );

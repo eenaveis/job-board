@@ -7,17 +7,23 @@ export const App = (props) => {
     const [listings, setListings] = useState([]);
     const [location, setLocation] = useState("");
     const [jobDescription, setJobDescription] = useState("");
+    const [fullTime, setFullTime] = useState(false);
     
     const handleOnSubmit = (event) => {
       event.preventDefault();
-    
+
+      // API and proxy url
+      const url = `https://jobs.github.com/positions.json?description=${jobDescription}&location=${location}&full_time=${fullTime}`;
+      const proxy = "https://cors-anywhere.herokuapp.com/"
+      
       axios
-        .get(`https://jobs.github.com/positions.json?description=${jobDescription}&location=${location}`)
+        .get(proxy + url)
         .then(response => {
           setListings(response.data)
         });
     };
-  
+
+    // Event listeners
     const onChangeLocation = (event) => {
       setLocation(event.target.value);
     };
@@ -25,16 +31,20 @@ export const App = (props) => {
     const onChangeJobDescription = (event) => {
       setJobDescription(event.target.value);
     };
+
+    const onChangeFullTime = (event) => {
+      setFullTime(event.target.checked);
+    };
   
     return (
       <div>
         <Header />
         <SearchForm 
           onSubmit={handleOnSubmit}
-          locationOnChange={onChangeLocation}
-          jobDescriptionOnChange={onChangeJobDescription}
+          onChangeLocation={onChangeLocation}
+          onChangeJobDescription={onChangeJobDescription}
+          onChangeFullTime={onChangeFullTime}
         />
-        <h1>Jobs</h1>
         <div id="listings">
           <ul>
             {listings.map((listing, i) => {
