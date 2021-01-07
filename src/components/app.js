@@ -11,7 +11,7 @@ export const App = (props) => {
     const [page, setPage] = useState(1);
     const [hidePagination, setHidePagination] = useState(true);
 
-    // Make api call and set listings
+    // Make API call and set listings
     const apiCall = (newPage) => {
       // API and proxy url
       const url = `https://jobs.github.com/positions.json?
@@ -20,9 +20,7 @@ export const App = (props) => {
         &full_time=${fullTime}
         &page=${newPage}`;
       const proxy = "https://cors-anywhere.herokuapp.com/"
-
-      console.log(url);
-      
+      // Make the API call      
       axios
         .get(url)
         .then(response => {
@@ -31,7 +29,7 @@ export const App = (props) => {
     };
 
     // Event listeners
-    const handleOnSubmit = (event) => {
+    const onSubmit = (event) => {
       event.preventDefault();
 
       const newPage = 1;
@@ -53,7 +51,7 @@ export const App = (props) => {
       setFullTime(event.target.checked);
     };
 
-    const handlePaginationOnClick = (event) => {
+    const onClickPagination = (event) => {
       const newPage = page + 1;
 
       apiCall(newPage);
@@ -65,7 +63,7 @@ export const App = (props) => {
       <div>
         <Header />
         <SearchForm 
-          onSubmit={handleOnSubmit}
+          onSubmit={onSubmit}
           onChangeLocation={onChangeLocation}
           onChangeJobDescription={onChangeJobDescription}
           onChangeFullTime={onChangeFullTime}
@@ -82,7 +80,7 @@ export const App = (props) => {
             })}
           </ul>
         </div>
-        <Pagination onClick={handlePaginationOnClick} hide={hidePagination}  />
+        <Pagination onClick={onClickPagination} hide={hidePagination}  />
       </div>
     );
 };
