@@ -29,4 +29,20 @@ const Header = (props) => {
     );
   };
 
-  export {Header, SearchForm, JobListing};
+  const Pagination = (props) => {
+    const styling = {
+      display: "none"
+    }
+    
+    if(!props.hide) {
+      styling.display = "block";
+    }
+
+    return (
+      <div>
+        <button onClick={props.onClick} style={styling}>Show more awesome jobs</button>
+      </div>
+    )
+  }
+
+  export {Header, SearchForm, JobListing, Pagination};

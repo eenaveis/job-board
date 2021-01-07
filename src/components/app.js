@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Header, SearchForm, JobListing} from "./main-components.js";
+import {Header, SearchForm, JobListing, Pagination} from "./main-components.js";
 import axios from "axios";
 
 
@@ -8,22 +8,39 @@ export const App = (props) => {
     const [location, setLocation] = useState("");
     const [jobDescription, setJobDescription] = useState("");
     const [fullTime, setFullTime] = useState(false);
-    
-    const handleOnSubmit = (event) => {
-      event.preventDefault();
+    const [page, setPage] = useState(1);
+    const [hidePagination, setHidePagination] = useState(true);
 
+    // Make api call and set listings
+    const apiCall = (newPage) => {
       // API and proxy url
-      const url = `https://jobs.github.com/positions.json?description=${jobDescription}&location=${location}&full_time=${fullTime}`;
+      const url = `https://jobs.github.com/positions.json?
+        description=${jobDescription}
+        &location=${location}
+        &full_time=${fullTime}
+        &page=${newPage}`;
       const proxy = "https://cors-anywhere.herokuapp.com/"
+
+      console.log(url);
       
       axios
-        .get(proxy + url)
+        .get(url)
         .then(response => {
           setListings(response.data)
         });
     };
 
     // Event listeners
+    const handleOnSubmit = (event) => {
+      event.preventDefault();
+
+      const newPage = 1;
+
+      apiCall(newPage);
+
+      setHidePagination(false);
+    };
+
     const onChangeLocation = (event) => {
       setLocation(event.target.value);
     };
@@ -35,6 +52,14 @@ export const App = (props) => {
     const onChangeFullTime = (event) => {
       setFullTime(event.target.checked);
     };
+
+    const handlePaginationOnClick = (event) => {
+      const newPage = page + 1;
+
+      apiCall(newPage);
+      
+      setPage(page + 1);
+    } 
   
     return (
       <div>
@@ -57,6 +82,7 @@ export const App = (props) => {
             })}
           </ul>
         </div>
+        <Pagination onClick={handlePaginationOnClick} hide={hidePagination}  />
       </div>
     );
 };
