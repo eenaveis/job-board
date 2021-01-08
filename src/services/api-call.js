@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiCall = (jobDescription, location, fullTime, page) => {
+export const apiCall = (jobDescription, location, fullTime, page) => {
     // API and proxy url
     const url = `https://jobs.github.com/positions.json?
       description=${jobDescription}
@@ -16,5 +16,3 @@ const apiCall = (jobDescription, location, fullTime, page) => {
       });
     return data;
   };
-
-  export {apiCall};

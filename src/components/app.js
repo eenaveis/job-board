@@ -3,14 +3,29 @@ import {Header, SearchForm, JobListing, Pagination} from "./main-components.js";
 import {apiCall} from "../services/api-call.js";
 
 export const App = (props) => {
+    // Hooks
     const [listings, setListings] = useState([]);
     const [location, setLocation] = useState("");
     const [jobDescription, setJobDescription] = useState("");
     const [fullTime, setFullTime] = useState(false);
     const [page, setPage] = useState(1);
     const [hidePagination, setHidePagination] = useState(true);
+    const [previousListing, setPreviousListing] = useState([]);
 
     // Event handlers
+    const handleApiCall = (data) => {
+      if(data.length == 0) {
+        setHidePagination(true);
+        setListings(previousListing);
+      } else if(data.length < 50) {
+        setHidePagination(true);
+        setListings(data);
+      } else {
+        setHidePagination(false);
+        setListings(data);
+        setPreviousListing(data);
+      }
+    }
     const onSubmit = (event) => {
       event.preventDefault();
   
@@ -18,10 +33,8 @@ export const App = (props) => {
   
       apiCall(jobDescription, location, fullTime, newPage)
         .then(data => {
-          setListings(data);
+          handleApiCall(data);
         });
-  
-      setHidePagination(false);
     };
   
     const onChangeLocation = (event) => {
@@ -41,12 +54,13 @@ export const App = (props) => {
   
       apiCall(jobDescription, location, fullTime, newPage)
         .then(data => {
-          setListings(data);
+          handleApiCall(data);
         });
   
       setPage(page + 1);
     };
   
+    // Return JSX
     return (
       <div>
         <Header />
