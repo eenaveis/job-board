@@ -1,6 +1,6 @@
 const Header = (props) => {
     return (
-      <div>
+      <div id="header">
         <h1>Job Board</h1>
       </div>
     )
@@ -8,21 +8,25 @@ const Header = (props) => {
   
   const SearchForm = (props) => {
     return (
-      <form onSubmit={props.onSubmit}>
-        <label htmlFor="jobDescription">Job description</label>
-        <input id="jobDescription" onChange={props.onChangeJobDescription}></input>
-        <label htmlFor="location">Location</label>
-        <input id="location" onChange={props.onChangeLocation}></input>
-        <label htmlFor="full-time">Full-time</label>
-        <input id="full-time" type="checkbox" onChange={props.onChangeFullTime}></input>
-        <button type="submit">Search</button>
+      <form id="search-form" onSubmit={props.onSubmit}>
+        <div className="search-box">
+          <label htmlFor="jobDescription">Job description</label>
+          <input id="jobDescription" onChange={props.onChangeJobDescription} />
+        </div>
+        <div className="search-box">
+          <label htmlFor="location">Location</label>
+          <input id="location" onChange={props.onChangeLocation} />
+        </div>
+        <label id="full-time-label" htmlFor="full-time">Full Time Only</label>
+        <input id="full-time" type="checkbox" onChange={props.onChangeFullTime} />
+        <button id="submit-button" type="submit">Search</button>
       </form>
     );
   };
   
   const JobListing = (props) => {
     return (
-      <div>
+      <div className="listing">
         <h4>{props.jobTitle}</h4>
         <span>{props.company}</span>
       </div>
@@ -40,7 +44,7 @@ const Header = (props) => {
 
     return (
       <div>
-        <button onClick={props.onClick} style={styling}>Show more awesome jobs</button>
+        <button id="pagination-button" onClick={props.onClick} style={styling}>Show more awesome jobs</button>
       </div>
     )
   }

@@ -1,0 +1,86 @@
+/*===============================================================================
+Global styles*/
+* {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0 0;
+    padding: 0 0;
+}
+
+h4 {
+    color: rgb(62, 126, 185);
+}
+
+label {
+    font-weight: bold;
+}
+
+/*===============================================================================
+Containers*/
+#header {
+    background-color: rgb(68, 125, 190);
+    color: white;
+    height: 60px;
+}
+
+#listings {
+    margin: 50px auto;
+    border: 5px solid rgb(236, 236, 236);
+    width: 960px;
+}
+
+#listings ul {
+    list-style-type: none;
+}
+
+#search-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 25px auto;
+    width: 960px;
+}
+
+/*===============================================================================
+Components*/
+.search-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-box input {
+    width: 322px;
+    height: 32px;
+}
+
+#full-time {
+    position: relative;
+    top: 30px;
+}
+
+#full-time-label {
+    position: relative;
+    top: 27px;
+}
+
+#submit-button {
+    width: 80px;
+    height: 32px;
+    position: relative;
+    top: 20px;
+}
+
+#pagination-button {
+    background-image: linear-gradient(to left top, #46a9e7, #1e81bf);
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    width: 580px;
+    height: 27px;
+}
+
+.listing {
+    padding: 10px 10px;
+    border-top: 1px solid rgb(221, 221, 221);
+    width: 560px;
+}

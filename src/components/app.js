@@ -26,6 +26,7 @@ export const App = (props) => {
         setPreviousListing(data);
       }
     }
+    
     const onSubmit = (event) => {
       event.preventDefault();
   
@@ -81,8 +82,8 @@ export const App = (props) => {
               </li>
             })}
           </ul>
+          <Pagination onClick={onClickPagination} hide={hidePagination} />
         </div>
-        <Pagination onClick={onClickPagination} hide={hidePagination} />
       </div>
     );
 };
