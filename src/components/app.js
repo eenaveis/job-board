@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Header, SearchForm, JobListing, Pagination} from "./main-components.js";
-import axios from "axios";
-
+import {apiCall} from "../services/api-call.js";
 
 export const App = (props) => {
     const [listings, setListings] = useState([]);
@@ -11,34 +10,20 @@ export const App = (props) => {
     const [page, setPage] = useState(1);
     const [hidePagination, setHidePagination] = useState(true);
 
-    // Make API call and set listings
-    const apiCall = (newPage) => {
-      // API and proxy url
-      const url = `https://jobs.github.com/positions.json?
-        description=${jobDescription}
-        &location=${location}
-        &full_time=${fullTime}
-        &page=${newPage}`;
-      const proxy = "https://cors-anywhere.herokuapp.com/"
-      // Make the API call      
-      axios
-        .get(url)
-        .then(response => {
-          setListings(response.data)
-        });
-    };
-
-    // Event listeners
+    // Event handlers
     const onSubmit = (event) => {
       event.preventDefault();
-
+  
       const newPage = 1;
-
-      apiCall(newPage);
-
+  
+      apiCall(jobDescription, location, fullTime, newPage)
+        .then(data => {
+          setListings(data);
+        });
+  
       setHidePagination(false);
     };
-
+  
     const onChangeLocation = (event) => {
       setLocation(event.target.value);
     };
@@ -46,18 +31,21 @@ export const App = (props) => {
     const onChangeJobDescription = (event) => {
       setJobDescription(event.target.value);
     };
-
+  
     const onChangeFullTime = (event) => {
       setFullTime(event.target.checked);
     };
-
+  
     const onClickPagination = (event) => {
       const newPage = page + 1;
-
-      apiCall(newPage);
-      
+  
+      apiCall(jobDescription, location, fullTime, newPage)
+        .then(data => {
+          setListings(data);
+        });
+  
       setPage(page + 1);
-    } 
+    };
   
     return (
       <div>
@@ -80,7 +68,7 @@ export const App = (props) => {
             })}
           </ul>
         </div>
-        <Pagination onClick={onClickPagination} hide={hidePagination}  />
+        <Pagination onClick={onClickPagination} hide={hidePagination} />
       </div>
     );
 };
