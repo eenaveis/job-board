@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Header, SearchForm, JobListing, Pagination} from "./main-components.js";
 import {apiCall} from "../services/api-call.js";
+import {timeElapsed} from "../services/date-time-functions.js"
 
 export const App = (props) => {
     // Hooks
@@ -79,6 +80,7 @@ export const App = (props) => {
                   jobTitle={listing.title}
                   company={listing.company}
                   location={listing.location}
+                  timeElapsed={timeElapsed(listing.created_at)}
                 />
               </li>
             })}

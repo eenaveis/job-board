@@ -35,7 +35,7 @@ const Header = (props) => {
         </div>
         <div className="meta">
           <span>{props.location}</span>
-          <span>time</span>
+          <span>{props.timeElapsed}</span>
         </div>
       </div>
     );
