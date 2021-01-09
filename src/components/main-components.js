@@ -17,8 +17,10 @@ const Header = (props) => {
           <label htmlFor="location">Location</label>
           <input id="location" onChange={props.onChangeLocation} />
         </div>
-        <label id="full-time-label" htmlFor="full-time">Full Time Only</label>
-        <input id="full-time" type="checkbox" onChange={props.onChangeFullTime} />
+        <div id="full-time-box">
+          <input id="full-time" type="checkbox" onChange={props.onChangeFullTime} />
+          <label id="full-time-label" htmlFor="full-time">Full Time Only</label>
+        </div>
         <button id="submit-button" type="submit">Search</button>
       </form>
     );
@@ -27,8 +29,14 @@ const Header = (props) => {
   const JobListing = (props) => {
     return (
       <div className="listing">
-        <h4>{props.jobTitle}</h4>
-        <span>{props.company}</span>
+        <div className="title">
+          <h4>{props.jobTitle}</h4>
+          <span>{props.company}</span>
+        </div>
+        <div className="meta">
+          <span>{props.location}</span>
+          <span>time</span>
+        </div>
       </div>
     );
   };

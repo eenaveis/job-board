@@ -1,4 +1,12 @@
 /*===============================================================================
+Credits
+
+Clipboard icon made by: https://www.flaticon.com/authors/freepik
+Globe icon made by https://www.flaticon.com/authors/turkkub
+
+*/
+
+/*===============================================================================
 Global styles*/
 * {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -6,12 +14,33 @@ Global styles*/
     padding: 0 0;
 }
 
+h1 {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
 h4 {
     color: rgb(62, 126, 185);
 }
 
 label {
+    font-size: 12px;
     font-weight: bold;
+}
+
+button {
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+span {
+    font-size: 12px;
 }
 
 /*===============================================================================
@@ -24,7 +53,8 @@ Containers*/
 
 #listings {
     margin: 50px auto;
-    border: 5px solid rgb(236, 236, 236);
+    border: 2px solid rgb(227, 227, 227);
+    box-shadow: 0 0 0 3px rgb(236, 236, 236);
     width: 960px;
 }
 
@@ -35,31 +65,34 @@ Containers*/
 #search-form {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 25px auto;
     width: 960px;
 }
 
-/*===============================================================================
-Components*/
 .search-box {
     display: flex;
     flex-direction: column;
 }
 
+/*===============================================================================
+Components*/
+
 .search-box input {
     width: 322px;
     height: 32px;
+    padding-left: 35px;
 }
 
 #full-time {
     position: relative;
-    top: 30px;
+    top: 25px;
+    right: 5px;
 }
 
 #full-time-label {
     position: relative;
-    top: 27px;
+    top: 23px;
 }
 
 #submit-button {
@@ -67,20 +100,47 @@ Components*/
     height: 32px;
     position: relative;
     top: 20px;
+    background-color: rgb(146, 162, 175);
 }
 
 #pagination-button {
     background-image: linear-gradient(to left top, #46a9e7, #1e81bf);
-    color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    border: none;
     width: 580px;
     height: 27px;
+    margin: 25px 5px;
 }
 
 .listing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 10px;
     border-top: 1px solid rgb(221, 221, 221);
     width: 560px;
 }
+
+.title, .meta {
+    width: 280px;
+    padding-left: 10px;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#jobDescription {
+    background-image: url("../img/clipboard.png");
+    background-repeat: no-repeat;
+    background-position: 1% 50%;
+}
+
+#location {
+    background-image: url("../img/globe.png");
+    background-repeat: no-repeat;
+    background-position: 1% 50%;
+
+}
+

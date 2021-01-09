@@ -14,7 +14,7 @@ export const App = (props) => {
 
     // Event handlers
     const handleApiCall = (data) => {
-      if(data.length == 0) {
+      if(data.length === 0) {
         setHidePagination(true);
         setListings(previousListing);
       } else if(data.length < 50) {
@@ -78,6 +78,7 @@ export const App = (props) => {
                 <JobListing 
                   jobTitle={listing.title}
                   company={listing.company}
+                  location={listing.location}
                 />
               </li>
             })}
