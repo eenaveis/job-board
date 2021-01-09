@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Header, SearchForm, JobListing, Pagination} from "./main-components.js";
 import {apiCall} from "../services/api-call.js";
-import {timeElapsed} from "../services/date-time-functions.js"
+import {timeElapsed} from "../services/date-time-functions.js";
+import {printSecretMessage} from "../services/secret-message.js";
 
 export const App = (props) => {
     // Hooks
@@ -12,6 +13,9 @@ export const App = (props) => {
     const [page, setPage] = useState(1);
     const [hidePagination, setHidePagination] = useState(true);
     const [previousListing, setPreviousListing] = useState([]);
+
+    // Print secret message
+    printSecretMessage();
 
     // Event handlers
     const handleApiCall = (data) => {
