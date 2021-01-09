@@ -27,15 +27,28 @@ const Header = (props) => {
   };
   
   const JobListing = (props) => {
+    const createHTML = (html) => {
+      return {__html: html};
+    }
+
     return (
       <div className="listing">
         <div className="title">
-          <h4>{props.jobTitle}</h4>
+          <h4><a onClick={() => props.onClickTitle(props.id)}>{props.jobTitle}</a></h4>
           <span>{props.company}</span>
         </div>
         <div className="meta">
           <span>{props.location}</span>
           <span>{props.timeElapsed}</span>
+        </div>
+        <div className="popup" id={props.id}>
+          <div className="description" 
+            dangerouslySetInnerHTML={createHTML("<h1>" + props.jobTitle + "</h1>" + props.description)}
+          >
+          </div>
+          <button id="close-button" 
+            onClick={() => props.onClickClose(props.id)}
+          >X</button>
         </div>
       </div>
     );

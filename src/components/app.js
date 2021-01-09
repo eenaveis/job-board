@@ -26,7 +26,7 @@ export const App = (props) => {
         setListings(data);
         setPreviousListing(data);
       }
-    }
+    };
     
     const onSubmit = (event) => {
       event.preventDefault();
@@ -61,6 +61,14 @@ export const App = (props) => {
   
       setPage(page + 1);
     };
+
+    const onClickTitle = (id) => {
+      document.getElementById(id).style.display = "block";
+    };
+
+    const onClickClose = (id) => {
+      document.getElementById(id).style.display = "none";
+    }
   
     // Return JSX
     return (
@@ -81,6 +89,10 @@ export const App = (props) => {
                   company={listing.company}
                   location={listing.location}
                   timeElapsed={timeElapsed(listing.created_at)}
+                  description={listing.description}
+                  id={i}
+                  onClickTitle={onClickTitle}
+                  onClickClose={onClickClose}
                 />
               </li>
             })}
