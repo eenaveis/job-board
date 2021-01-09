@@ -11,20 +11,17 @@ export const App = (props) => {
     const [fullTime, setFullTime] = useState(false);
     const [page, setPage] = useState(1);
     const [hidePagination, setHidePagination] = useState(true);
-    const [previousListing, setPreviousListing] = useState([]);
 
     // Event handlers
     const handleApiCall = (data) => {
       if(data.length === 0) {
         setHidePagination(true);
-        setListings(previousListing);
       } else if(data.length < 50) {
         setHidePagination(true);
         setListings(data);
       } else {
         setHidePagination(false);
         setListings(data);
-        setPreviousListing(data);
       }
     };
     
@@ -90,12 +87,14 @@ export const App = (props) => {
                   location={listing.location}
                   timeElapsed={timeElapsed(listing.created_at)}
                   description={listing.description}
+                  apply={listing.how_to_apply}
                   id={i}
                   onClickTitle={onClickTitle}
                   onClickClose={onClickClose}
                 />
               </li>
-            })}
+            }
+            )}
           </ul>
           <Pagination onClick={onClickPagination} hide={hidePagination} />
         </div>

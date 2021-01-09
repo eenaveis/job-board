@@ -43,7 +43,8 @@ const Header = (props) => {
         </div>
         <div className="popup" id={props.id}>
           <div className="description" 
-            dangerouslySetInnerHTML={createHTML("<h1>" + props.jobTitle + "</h1>" + props.description)}
+            dangerouslySetInnerHTML={createHTML("<h1>" + props.jobTitle + "</h1>" + 
+              props.description + props.apply)}
           >
           </div>
           <button id="close-button" 
