@@ -12,6 +12,7 @@ Contents:
 Global styles
 Container styles
 Component styles
+Mobile styles
 */
 
 /*===============================================================================
@@ -56,6 +57,8 @@ Containers*/
     background-color: rgb(68, 125, 190);
     color: white;
     height: 60px;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 #listings {
@@ -181,11 +184,57 @@ Components*/
     border-radius: 50%;
 }
 
-#header h1 {
-    padding-top: 10px;
-    padding-left: 10px;
-}
-
 .description * {
     margin-top: 15px;
+}
+
+/*===============================================================================
+Mobile styles*/
+
+@media only screen and (max-width: 600px) {
+    html {
+        width: 100%;
+    }
+
+    #header {
+        width: 100%;
+    }
+
+    #search-form {
+        flex-direction: column;
+        width: 300px;
+        height: 200px;
+        margin: 25px 10px;
+    }
+
+    #listings {
+        margin: 50px auto;
+        width: 350px;
+    }
+
+    .popup {
+        width: 340px;
+    }
+
+    #full-time {
+        top: 10px;
+        left: 0;
+    }
+
+    #full-time-label {
+        top: 10px;
+        left: 7px;
+    }
+
+    .listing {
+        width: 280px;
+    }
+
+    #close-button {
+        left: 330px;
+    }
+
+    #pagination-button {
+        width: 340px;
+    }
 }
